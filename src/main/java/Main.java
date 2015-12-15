@@ -9,9 +9,6 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) {
-        //TODO: why queue?
-        //TODO: why 40% CPU? because of output? without output - 4-5% O_o
-        //TODO: is xml tags right?
         final Logger log = LogManager.getLogger(Main.class);
 
         Integer parkingSize, masterCount, handlig_time;

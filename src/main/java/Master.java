@@ -3,6 +3,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 
@@ -39,7 +40,13 @@ public class Master implements Runnable{
                 Thread.sleep(handlig_time);
                 log.debug("Car repaired: ");
                 tmpCar.logCar();
-                XmlAppender.saveCar(tmpCar);
+
+                try {
+                    XmlAppender.saveCarManually(tmpCar);
+                } catch (IOException e) {
+                    log.error(e.getMessage());
+                }
+
                 try {
                     dba.saveCar(tmpCar);
                 } catch (SQLException e) {

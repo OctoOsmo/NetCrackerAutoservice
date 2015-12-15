@@ -8,11 +8,17 @@ import java.util.Properties;
  * Created by al on 14.12.2015.
  */
 public class PropertiesManager {
-    private FileOutputStream f = null;
-    private FileInputStream fin = null;
     private String fileName;
     private Properties properties = new Properties();
     private Integer X, N, handlig_time;
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     public Integer getX() {
         return X;
@@ -47,18 +53,20 @@ public class PropertiesManager {
     }
 
     public void store(Integer parkinSize, Integer masterCount, Integer handlig_time) throws IOException {
-        f = new FileOutputStream(fileName);
+        FileOutputStream f = new FileOutputStream(fileName);
         properties.setProperty("X", parkinSize.toString());
         properties.setProperty("N", masterCount.toString());
         properties.setProperty("handlig_time", handlig_time.toString());
         properties.store(f, "Autoservice properties N is workers count, X is parking size");
+        f.close();
     }
 
     public void read() throws IOException {
-        fin = new FileInputStream(fileName);
+        FileInputStream fin = new FileInputStream(fileName);
         properties.load(fin);
         X = Integer.parseInt(properties.getProperty("X"));
         N = Integer.parseInt(properties.getProperty("N"));
         handlig_time = Integer.parseInt(properties.getProperty("handlig_time"));
+        fin.close();
     }
 }
