@@ -4,13 +4,11 @@ import java.util.concurrent.*;
  */
 public class Service {
     private Integer masterCount;
-    private Integer parkingSize;
     BlockingQueue<Car> parking;
     private Integer handlig_time;
 
     public Service(Integer masterCount, Integer parkingSize, Integer handlig_time) {
         this.masterCount = masterCount;
-        this.parkingSize = parkingSize;
         this.handlig_time = handlig_time;
         parking = new LinkedBlockingQueue<>(parkingSize);
     }

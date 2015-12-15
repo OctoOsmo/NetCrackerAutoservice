@@ -20,7 +20,7 @@ public class CarGenerator {
     public Car getCar(){
         String name = generateString("QWERTYUIOPLKJHGFDSAZXCVBNMqwertyuioplkjhgfdsazxcvbnm", 10);
         String owner = generateString("QWERTYUIOPLKJHGFDSAZXCVBNMqwertyuioplkjhgfdsazxcvbnm", 15);
-        return new Car(rng.nextInt()%3 + 4, name, owner);
+        return new Car(Math.abs(rng.nextInt()%3)+1, name, owner);
     }
 
 }

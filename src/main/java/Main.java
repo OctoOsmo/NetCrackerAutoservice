@@ -3,7 +3,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by al on 14.12.2015.
@@ -12,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         //TODO: why queue?
         //TODO: why 40% CPU? because of output? without output - 4-5% O_o
+        //TODO: is xml tags right?
         final Logger log = LogManager.getLogger(Main.class);
 
         Integer parkingSize, masterCount, handlig_time;
@@ -32,6 +32,5 @@ public class Main {
 
         Service service = new Service(masterCount, parkingSize, handlig_time);
         service.repairCars();
-
     }
 }

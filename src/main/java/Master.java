@@ -3,6 +3,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 
+import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -14,10 +15,17 @@ public class Master implements Runnable{
     Marker master = MarkerManager.getMarker("master");
     private BlockingQueue<Car> parking;
     private Integer handlig_time;
+    DataBaseAppender dba;
 
     public Master(BlockingQueue<Car> parking, Integer handlig_time) {
         this.parking = parking;
         this.handlig_time = handlig_time;
+        try {
+            dba = new DataBaseAppender();
+        } catch (SQLException e) {
+            log.error("Database storage failure");
+            log.error(e.getMessage());
+        }
     }
 
     @Override
@@ -31,6 +39,13 @@ public class Master implements Runnable{
                 Thread.sleep(handlig_time);
                 log.debug("Car repaired: ");
                 tmpCar.logCar();
+                XmlAppender.saveCar(tmpCar);
+                try {
+                    dba.saveCar(tmpCar);
+                } catch (SQLException e) {
+                    log.error(e.getMessage());
+                }
+
             } catch (InterruptedException e) {
                 log.warn("Interruption here");
             }

@@ -27,6 +27,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Autoservice" target="1.7" />
+      <module name="NetCrackerAutoservice" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
