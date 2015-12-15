@@ -1,0 +1,5 @@
+#Autoservice properties N is workers count, X is parking size
+#Tue Dec 15 02:52:43 MSK 2015
+N=6
+handlig_time=10
+X=100
